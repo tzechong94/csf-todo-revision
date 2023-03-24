@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { switchMap } from 'rxjs';
 import { EditedTask, Task } from './models';
 import { TaskService } from './task.service';
 
@@ -29,10 +30,10 @@ export class AppComponent implements OnInit {
   editedTaskData(task: Task) {
     // this.tasks[this.currentIndex] = task
     console.log('task after clicking edit ', task)
-    this.taskSvc.updateTaskById(this.currentId, task).subscribe(data => console.log(data))
-    this.taskSvc.getTasks().subscribe(
-      (data: Task[]) => this.tasks = data
-    )
+    this.taskSvc.updateTaskById(this.currentId, task).pipe(
+      switchMap(()=>  this.taskSvc.getTasks())
+    ).subscribe((data: Task[]) => this.tasks = data)
+    
     console.log(this.tasks, '123')
 
 
