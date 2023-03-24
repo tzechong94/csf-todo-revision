@@ -17,7 +17,13 @@ const httpOptions = {
 @Injectable()
 export class TaskService {
 
+
     constructor(private http: HttpClient){}
+
+    getTaskById(taskId: string) {
+      const url = `${ADD_TASK_URL}/${taskId}` 
+      return this.http.get<Task>(url)
+    }
 
     getTasks() {
         return this.http.get<Task[]>(GET_ALL_URL)
@@ -30,7 +36,7 @@ export class TaskService {
             )
     }
 
-    updateTask(task: Task, id: number) {
+    updateTaskById(id: string, task: Task) {
         const url = `${ADD_TASK_URL}/${id}` 
         return this.http.put<Task>(url, task, httpOptions)
             .pipe(

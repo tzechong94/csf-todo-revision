@@ -27,4 +27,12 @@ public class TaskService {
         Task t = new Task();
         return t.createFromDoc(d);
     }
+
+    public void updateTaskById(String taskId, Task t) {
+        taskRepo.updateTaskById(taskId, t);
+    }
+
+    public Task findTaskById(String taskId) {
+        return taskRepo.findTaskById(taskId);
+    }
 }

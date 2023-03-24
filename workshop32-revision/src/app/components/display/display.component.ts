@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit, Output } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { Subject } from 'rxjs';
 import { EditedTask, Task } from 'src/app/models';
 
@@ -7,21 +7,27 @@ import { EditedTask, Task } from 'src/app/models';
   templateUrl: './display.component.html',
   styleUrls: ['./display.component.css']
 })
-export class DisplayComponent {
+export class DisplayComponent implements OnChanges{
 
   @Input()
   tasks: Task[] = []
 
   @Output()
-  onEditTask = new Subject<number>
+  onEditTask = new Subject<string>
 
-  removeTask(idx: number) {
-    this.tasks.splice(idx,1)
+  removeTask(taskId: string) {
+    // this.tasks.splice(idx,1)
   }
 
-  editTask(idx: number) {
-    this.onEditTask.next(idx)
+  editTask(taskId: string) {
+    this.onEditTask.next(taskId)
 
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+      console.log(changes, 'changes')
+      this.tasks = changes['tasks'].currentValue
+      console.log('updated tasks' , this.tasks)
   }
 
 }

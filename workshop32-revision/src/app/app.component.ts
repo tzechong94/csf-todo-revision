@@ -15,19 +15,27 @@ export class AppComponent implements OnInit {
   tasks: Task[] = []
 
   selectedTask!: Task
-  currentIndex!: number
+  currentId!: string
 
   newTaskData(task: Task) {
     this.tasks.push(task)
   }
 
-  editingTask(idx: number) {
-    this.selectedTask = this.tasks[idx]
-    this.currentIndex = idx
+  editingTask(taskId: string) {
+    this.taskSvc.getTaskById(taskId).subscribe(data => this.selectedTask = data) // getTaskById
+    this.currentId = taskId 
   }
 
   editedTaskData(task: Task) {
-    this.tasks[this.currentIndex] = task
+    // this.tasks[this.currentIndex] = task
+    console.log('task after clicking edit ', task)
+    this.taskSvc.updateTaskById(this.currentId, task).subscribe(data => console.log(data))
+    this.taskSvc.getTasks().subscribe(
+      (data: Task[]) => this.tasks = data
+    )
+    console.log(this.tasks, '123')
+
+
   }
 
   ngOnInit(): void {

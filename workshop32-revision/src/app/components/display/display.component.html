@@ -13,7 +13,7 @@
                 {{task.description}}
             </mat-card-title>
             <mat-card-subtitle>
-                {{task.priority}}
+                {{task.priority}}  {{task._id}}
             </mat-card-subtitle>
 
             <mat-card-subtitle>
@@ -22,10 +22,10 @@
         </mat-card-header>
 
         <mat-card-actions>
-            <button mat-raised-button color="primary" type="button" (click)="editTask(idx)">
+            <button mat-raised-button color="primary" type="button" (click)="editTask(task._id)">
                 Edit
             </button>
-            <button mat-raised-button color="warn" type="button" (click)="removeTask(idx)">
+            <button mat-raised-button color="warn" type="button" (click)="removeTask(task._id)">
                 Remove
             </button>
         </mat-card-actions>

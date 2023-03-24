@@ -1,4 +1,5 @@
 export interface Task {
+    _id: string,
     description: string,
     priority: string,
     due: Date
