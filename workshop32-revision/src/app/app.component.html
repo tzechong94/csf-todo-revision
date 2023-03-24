@@ -1,0 +1,3 @@
+<app-input (taskData)="newTaskData($event)" [editTaskData]="selectedTask" (editedTask)="editedTaskData($event)"></app-input>
+
+<app-display [tasks]="tasks" (onEditTask)="editingTask($event)"></app-display>

@@ -1,0 +1,9 @@
+.task-card {
+    max-width: 500px;
+    margin: 20px;
+}
+
+.tasks-container {
+    display: flex;
+    justify-content: center;
+}

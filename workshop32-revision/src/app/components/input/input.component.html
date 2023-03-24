@@ -1,0 +1,50 @@
+<mat-toolbar color="primary">
+    <span>ToDo</span>
+</mat-toolbar>
+
+<div class="form-container">
+
+    <mat-card class="form-card">
+        <form [formGroup]="todoForm" (ngSubmit)="addTask()">
+            
+            <div class="input-row">
+                
+                <mat-label class="input-label">Description</mat-label>
+                
+                <mat-form-field class="full-width">
+                    <mat-label>Description</mat-label>
+                    <input matInput formControlName="description" type="text">
+                </mat-form-field>
+            </div>
+            <div class="input-row">
+                
+                <mat-label>Priority</mat-label>
+                
+                
+                <mat-radio-group formControlName="priority" >
+                    <mat-radio-button type="radio" id="high" value="high" >High</mat-radio-button>
+                    <mat-radio-button type="radio" id="medium"  value="medium">Medium</mat-radio-button>
+                    <mat-radio-button type="radio"  id="low" value="low">Low</mat-radio-button>
+                </mat-radio-group>
+            </div>
+            
+            <div class="input-row">
+                <mat-label>Due</mat-label>
+                <mat-form-field class="example-full-width" appearance="fill" class="full-width">
+                    <mat-label>Choose a date</mat-label>
+                    <input formControlName="due" matInput [matDatepicker]="picker">
+                    <mat-hint>MM/DD/YYYY</mat-hint>
+                    <mat-datepicker-toggle matIconSuffix [for]="picker">
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+            </div>
+            <div class="button-row">
+                <button mat-raised-button color="primary" [disabled]="todoForm.invalid" type="submit">Add New</button>
+                <button *ngIf="isEditing" mat-raised-button color="primary" type="button" (click)="finishEdit()">Edit</button>
+            </div>
+            
+        </form>
+    </mat-card>
+    
+</div>

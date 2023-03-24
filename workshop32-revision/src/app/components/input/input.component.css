@@ -1,0 +1,29 @@
+.full-width {
+    width: 100%
+}
+
+.form-card {
+    max-width: 500px;
+    margin: 20px;
+}
+
+
+.button-row {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px;
+}
+
+.input-row {
+    margin: 20px;
+}
+
+.input-label {
+    padding-top: 10px;
+    margin-bottom: 10px;
+}
+
+.form-container {
+    display: flex;
+    justify-content: center;
+}
