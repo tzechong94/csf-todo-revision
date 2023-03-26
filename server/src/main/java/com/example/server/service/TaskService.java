@@ -25,6 +25,7 @@ public class TaskService {
     public Task insertTask(Document doc) {
         Document d = taskRepo.insertTask(doc);
         Task t = new Task();
+        System.out.println(t.createFromDoc(d).getDescription());
         return t.createFromDoc(d);
     }
 
@@ -34,5 +35,10 @@ public class TaskService {
 
     public Task findTaskById(String taskId) {
         return taskRepo.findTaskById(taskId);
+    }
+
+    public void removeTaskById(String taskId) {
+
+        taskRepo.removeTaskById(taskId);
     }
 }

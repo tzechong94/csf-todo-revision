@@ -15,13 +15,17 @@ export class DisplayComponent implements OnChanges{
   @Output()
   onEditTask = new Subject<string>
 
+  @Output()
+  onRemoveTask = new Subject<string>
+
   removeTask(taskId: string) {
     // this.tasks.splice(idx,1)
+    this.onRemoveTask.next(taskId)
+
   }
 
   editTask(taskId: string) {
     this.onEditTask.next(taskId)
-
   }
 
   ngOnChanges(changes: SimpleChanges): void {

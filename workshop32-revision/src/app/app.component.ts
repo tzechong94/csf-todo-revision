@@ -33,10 +33,12 @@ export class AppComponent implements OnInit {
     this.taskSvc.updateTaskById(this.currentId, task).pipe(
       switchMap(()=>  this.taskSvc.getTasks())
     ).subscribe((data: Task[]) => this.tasks = data)
-    
-    console.log(this.tasks, '123')
+  }
 
-
+  removeTask(taskId: string) {
+    this.taskSvc.deleteTask(taskId).pipe(
+      switchMap(()=> this.taskSvc.getTasks())
+    ).subscribe((data: Task[]) => this.tasks = data)
   }
 
   ngOnInit(): void {

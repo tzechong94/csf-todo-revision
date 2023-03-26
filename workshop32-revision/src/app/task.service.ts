@@ -16,6 +16,9 @@ const httpOptions = {
 
 @Injectable()
 export class TaskService {
+    removeTaskById(taskId: string) {
+      throw new Error('Method not implemented.');
+    }
 
 
     constructor(private http: HttpClient){}
@@ -44,7 +47,7 @@ export class TaskService {
             )
     }
 
-    deleteTask(id:number): Observable<unknown> {
+    deleteTask(id:string): Observable<unknown> {
         const url = `${ADD_TASK_URL}/${id}` 
         return this.http.delete(url, httpOptions)
             .pipe(

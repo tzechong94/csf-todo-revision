@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -30,12 +31,8 @@ public class TaskController {
     public ResponseEntity<List<Task>> getTasks(){
         
         List<Task> results = taskSvc.findAllTasks();
-
-        if (results.isEmpty()){
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        } else {
-            return new ResponseEntity<>(results, HttpStatus.OK);
-        }
+        return new ResponseEntity<>(results, HttpStatus.OK);
+        
 
     }
 
@@ -69,7 +66,14 @@ public class TaskController {
         taskSvc.updateTaskById(taskId, t);
 
         return new ResponseEntity<>(HttpStatus.OK);
+    }
 
+    @DeleteMapping(path="/task/{taskId}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<String> removeTaskById(@PathVariable String taskId) {
+        
+        taskSvc.removeTaskById(taskId);
+
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 }

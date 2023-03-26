@@ -55,9 +55,12 @@ export class InputComponent implements OnInit, OnChanges {
 
   addTask() {
     const task = this.todoForm.value as Task
-    console.log("task ", task)
+    console.log(task.due.toString())
+    task.due = task.due.toString()
+    console.log("task after adding", task)
     this.taskSvc.addTask(task)
-          .subscribe(data => console.log(data))
+          .subscribe(data => task._id = data._id.toString())
+    console.log(task, 'after adding test')
     this.taskData.next(task)
     this.isEditing = false
     this.todoForm.reset()

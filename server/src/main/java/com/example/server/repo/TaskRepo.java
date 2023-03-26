@@ -28,7 +28,6 @@ public class TaskRepo {
     }
 
     public Document insertTask(Document doc) {
-
         return template.insert(doc, "tasks");
     }
 
@@ -58,6 +57,15 @@ public class TaskRepo {
 
         List<Task> results = template.find(query, Task.class, "tasks");
         return results.get(0);
+    }
+
+    public void removeTaskById(String taskId) {
+        ObjectId _id = new ObjectId(taskId);
+
+        Criteria criteria = Criteria.where("_id").is(_id);
+        Query query = Query.query(criteria);
+
+        template.findAndRemove(query, Task.class, "tasks");
     }
     
 }

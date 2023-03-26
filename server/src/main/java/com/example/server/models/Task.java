@@ -46,8 +46,7 @@ public class Task {
         t.setDescription(d.getString("description"));
         t.setPriority(d.getString("priority"));
         t.setDue(d.getString("due"));
-
-        return null;
+        return t;
     }
 
     public Document toDoc() {
